@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "concat-stream": "^2.0.0"
+    "concat-stream": "^2.0.0",
+    "strftime": "^0.10.1"
   }
 }
