@@ -8,3 +8,5 @@ const verdoppeln = (num, callback) => {
 verdoppeln(5, (ergebnis) => {
     console.log(ergebnis);
 });
+
+
