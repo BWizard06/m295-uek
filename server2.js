@@ -55,7 +55,7 @@ app.delete("/name", (req, res) => {
 
 app.get("/secret2", (req, res) => {
     const auth = req.headers.authorization;
-    if (auth == "ok") {
+    if (auth == "Basic dW5kZWZpbmVkOnVuZGVmaW5lZA==") {
         res.sendStatus(200);
     } else {
         res.sendStatus(401);

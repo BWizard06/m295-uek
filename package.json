@@ -2,7 +2,7 @@
   "type": "module",
   "scripts": {
     "start": "node server.js",
-    "devStart": "nodemon server2.js"
+    "devStart": "nodemon server3.js"
   },
   "dependencies": {
     "concat-stream": "^2.0.0",
