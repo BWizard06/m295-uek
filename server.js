@@ -1,6 +1,10 @@
-const express = require("express");
-const { path } = require("express/lib/application");
-const { resetWatchers } = require("nodemon/lib/monitor/watch");
+import express from "express";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+
+const filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(filename);
+
 const app = express();
 const port = 3000;
 
