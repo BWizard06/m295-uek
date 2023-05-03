@@ -1,42 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-        <script>
-            document.addEventListener("DOMContentLoaded", () => {
-                const form = document.getElementById("delete-name-form");
-                const nameInput = document.getElementById("name-input");
-                console.log(form)
-                form.addEventListener('submit', (event) => {
-                    event.preventDefault();
-                    const data = nameInput.value;
-                    console.log(data)
-                    fetch("http://localhost:3000/name", {
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const deleteNameForm = document.getElementById("delete-name-form");
+            const nameInput = document.getElementById("name-input");
+            deleteNameForm.addEventListener("submit", (event) => {
+                event.preventDefault();
+                const name = nameInput.value;
+                fetch("http://localhost:3000/name/", {
                         method: "DELETE",
-                        body: JSON.stringify({ data }),
+                        body: JSON.stringify({ name }),
                         headers: {
-                            "Content-Type": "application/json",
-                        },
-                    }).then((response) => response.json())
-                    .then((data) => {
+                            "Content-Type": "application/json"
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
                         console.log(data);
-                    });
-                
-                });
-            });
-        </script>
-    </head>
-    <body>
-        <form action="http://localhost:3000/name" method="POST">
-            <input type="text" name="name" id="name" />
-            <input type="submit" value="Submit" />
-        </form>
-        <form id="delete-name-form" action="http://localhost:3000/name">
-            <input type="text" name="name" id="name-input" />
-            <button type="submit">Löschen</button>
-        </form>
-    </body>
+                    })
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <form action="http://localhost:3000/name" method="POST">
+        <input type="text" name="name" id="name">
+        <button type="submit">Hinzufügen</button>
+    </form>
+    <form id="delete-name-form" action="http://localhost:3000/name">
+        <input type="text" name="name" id="name-input">
+        <button type="submit">Löschen</button>
+    </form>
+</body>
+
 </html>
