@@ -31,7 +31,6 @@ router.get("/:id", (req, res) => {
 
 router.post("/", (req, res) => {
     const { customer_id, isbn } = req.body;
-    let currentState = false;
     let newLend;
     if (customer_id && isbn) {
         newLend = {
@@ -43,12 +42,11 @@ router.post("/", (req, res) => {
         };
     } else {
         res.status(422);
-        currentState = false;
     }
     const borrowed_books = lends.filter(
         (lend) => lend.isbn === newLend.isbn && lend.returned_at == null
     );
-    if (borrowed_books.length > 0) {
+    if (borrowed_books?.length > 0) {
         res.send("Book could not be lend")
     } else {
         res.send("Book can be lend");
