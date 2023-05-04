@@ -108,14 +108,22 @@ app.put("/books/:isbn", (req, res) => {
     for (const key in req.body) {
         newBook[key] = req.body[key];
     }
-    for (let book of books) {
-        if (book.isbn === Number(isbn)) {
-            book = newBook;
-            break;
-        }
+    const updatedBooks = books.map((book) => {
+        return book.isbn === Number(isbn) ? newBook : book;
+    });
+    books = updatedBooks;
+    res.send(newBook);
+});
+
+app.delete("/books/:isbn", (req, res) => {
+    const isbn = req.params.isbn;
+    const index = books.findIndex((book) => book.isbn === Number(isbn));
+    if (index > -1) {
+        books.splice(index, 1);
+        res.sendStatus(204);
+    } else {
+        res.send("Book not found");
     }
-    console.log(newBook)
-    res.send(newBook)
 });
 
 app.listen(port, () => {
